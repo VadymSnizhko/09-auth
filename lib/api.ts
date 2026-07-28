@@ -14,17 +14,14 @@ interface FetchNotesParams {
 }
 
 const BASE_URL = 'https://notehub-public.goit.study/api/notes';
-/*
-export const getNote = async () => {
-  const {data} = await axios.get<FetchNotesResponse>(BASE_URL, {
-   headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  })
-  return data
-}*/
 
-//https://notehub-public.goit.study/api/notes?tag=Todo&page=1&perPage=10&sortBy=created
+const API = axios.create(
+  {
+    baseURL: 'http://localhost:3001/api',
+  withCredentials: true, // дозволяє axios працювати з cookie
+  }
+)
+
 export const fetchNotes = async ({
   page,
   search,
@@ -82,12 +79,3 @@ export const getNoteItem = async (id:string): Promise<Note> => {
   })
  return data
 }
-/*
-export const getTag = async (tag:string) => {
- const {data} = await axios.get<Note>(`${BASE_URL}/?tag=${tag}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  })
- return data
-}*/
