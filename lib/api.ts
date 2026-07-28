@@ -17,7 +17,7 @@ const BASE_URL = 'https://notehub-public.goit.study/api/notes';
 
 const API = axios.create(
   {
-    baseURL: 'http://localhost:3001/api',
+    baseURL: 'http://localhost:300/api',
   withCredentials: true, // дозволяє axios працювати з cookie
   }
 )
