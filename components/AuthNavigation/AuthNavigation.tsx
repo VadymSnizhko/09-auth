@@ -20,13 +20,13 @@ const AuthNavigation = () => {
             </li>
 
             <li className={css.navigationItem}>
-                <Link href="/sing-in"   className={css.navigationLink}>
+                <Link href="/sign-in"   className={css.navigationLink}>
                     Login
                 </Link>
             </li>
 
             <li className={css.navigationItem}>
-                <Link href="/sing-up"   className={css.navigationLink}>
+                <Link href="/sign-up"   className={css.navigationLink}>
                     Sign up
                 </Link>
             </li>
