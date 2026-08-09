@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { checkSession } from "@/lib/api/serverApi";
 
+import { parseSetCookie } from "cookie";
+
 const privateRoutes = ["/profile", "/notes"];
 const publicRoutes = ["/sign-in", "/sign-up"];
 
@@ -39,13 +41,11 @@ export async function proxy(request: NextRequest) {
         const setCookie = response.headers["set-cookie"];
 
         if (setCookie) {
-          for (const cookie of setCookie) {
-            const [cookieValue] = cookie.split(";");
+          for (const cookieString of setCookie) {
+            const parsed = parseSetCookie(cookieString);
 
-            const [name, value] = cookieValue.split("=");
-
-            if (name && value) {
-              nextResponse.cookies.set(name, value);
+            if (parsed.value) {
+              nextResponse.cookies.set(parsed.name, parsed.value, parsed);
             }
           }
         }
