@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider"
+import AuthProvider from '@/components/AuthProvider/AuthProvider'
 
 /*
 const geistSans = Geist({
@@ -20,29 +21,29 @@ const geistMono = Geist_Mono({
 */
 
 const roboto = Roboto({
-  subsets: ['latin'], 
+  subsets: ['latin'],
   weight: ['400', '700'],
-  variable: '--font-roboto', 
-  display: 'swap', 
+  variable: '--font-roboto',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: "Note Hub",
   description: "A simple and efficient app for create and organizing your notes.",
   openGraph: {
-      title: `Note Hub`,
-      description: "A simple and efficient app for create and organizing your notes.",
-      url: `https://08-zustand-puce-kappa.vercel.app/`,
-      siteName: 'NoteHub',
-      images: [
-        {
-          url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
-          width: 1200,
-          height: 630,
-          alt: "Note Hub",
-        },
-      ]
-    }
+    title: `Note Hub`,
+    description: "A simple and efficient app for create and organizing your notes.",
+    url: `https://08-zustand-puce-kappa.vercel.app/`,
+    siteName: 'NoteHub',
+    images: [
+      {
+        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        width: 1200,
+        height: 630,
+        alt: "Note Hub",
+      },
+    ]
+  }
 };
 
 export default function RootLayout({
@@ -56,12 +57,15 @@ export default function RootLayout({
     <html lang="en" className={roboto.variable}>
       <body>
         <TanStackProvider>
-          <Header />
-          <main>
-            {children}
-            {modal}
-          </main>
-          <Footer />
+          <AuthProvider>
+            <Header />
+            <main>
+              {children}
+              {modal}
+            </main>
+            <Footer />
+
+          </AuthProvider>
         </TanStackProvider>
 
       </body>
