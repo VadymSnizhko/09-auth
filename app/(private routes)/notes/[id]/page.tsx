@@ -1,5 +1,5 @@
 import css from "./NoteDetails.module.css"
-import { getNoteItem } from "@/lib/api"
+import { fetchNoteById } from "@/lib/api/serverApi"
 import { QueryClient, HydrationBoundary, dehydrate, } from "@tanstack/react-query"
 import NoteDetailsClient from "./NoteDetails.client"
 import {Metadata} from "next"
@@ -11,7 +11,7 @@ interface Props{
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
-  const note = await getNoteItem(id)
+  const note = await fetchNoteById(id)
 
   return {
     title: `${note.title}`,
@@ -41,7 +41,7 @@ const NoteDetails = async ({params}:Props) => {
 
     await queryClient.prefetchQuery({
         queryKey: ["note", id],
-        queryFn: () => getNoteItem(id),
+        queryFn: () => fetchNoteById(id),
     });
 
     return (

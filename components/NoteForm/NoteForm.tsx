@@ -2,7 +2,7 @@
 
 import css from './NoteForm.module.css'
 import { CreateNote } from '@/types/note';
-import { createNote } from '@/lib/api';
+import { createNote } from '@/lib/api/clientApi';
 import {
   useMutation,
   useQueryClient,
