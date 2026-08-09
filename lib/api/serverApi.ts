@@ -63,6 +63,16 @@ export const getMe = async (): Promise<User> => {
   return data;
 };
 
+export const checkSession = async () => {
+  const cookieStore = await cookies();
+
+  return api.get("/auth/session", {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
+};
+/*
 export const checkSession = async (): Promise<boolean> => {
   const cookieStore = await cookies();
 
@@ -76,4 +86,4 @@ export const checkSession = async (): Promise<boolean> => {
   );
 
   return data.success;
-};
+};*/

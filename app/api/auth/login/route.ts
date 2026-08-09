@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     const cookieStore = await cookies();
     const setCookie = apiRes.headers['set-cookie'];
 
-    console.log("BACKEND SET-COOKIE:", setCookie);
+    //console.log("BACKEND SET-COOKIE:", setCookie);
 
     if (setCookie) {
       const cookieArray = Array.isArray(setCookie) ? setCookie : [setCookie];
